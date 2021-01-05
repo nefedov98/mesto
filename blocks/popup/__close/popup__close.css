@@ -1,0 +1,31 @@
+.popup__close {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    background-image: url(../../../images/Close\ Icon.svg);
+    background-repeat: no-repeat;
+    Width: 40px;
+    height: 40px;
+    right: -50px;
+    bottom: 345px;
+    cursor: pointer;
+}
+
+.popup__close:hover {
+    opacity: 0.8;
+}
+
+@media screen and (max-width: 800px) {
+    .popup__close {
+        right: 0px;
+        bottom: 360px;
+        background-image: url(../../../images/Close\ Icon2.svg);
+    }
+}
+
+
+
+
+
+
+убрать недостатки, проверить названия, исправить крестик, перечитать тербования, подготовить к сдачеЮ 
