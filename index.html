@@ -20,10 +20,10 @@
                             <h1 class="profile__title">Жак-Ив Кусто</h1>
                             <p class="profile__subtitle">Исследователь океана</p>
                         </div>
-                        <button class="profile__edit"></button>
+                        <button class="profile__edit" type="button"></button>
                     </div>
                 </div>
-                <button class="profile__add"></button>
+                <button class="profile__add" type="button"></button>
             </section>
             <section class="photos">
                 <ul class="photos__list">
@@ -33,7 +33,7 @@
                             <figcaption class="photos__figcaption">Байкал</figcaption>
                         </figure>
                         <div class="photos__like-container">
-                            <button class="photos__like-button photos__like-button_liked"></button>
+                            <button class="photos__like-button" type="button"></button>
                             <span class="photos__like-count">0</span>
                         </div>
                     </li>
@@ -43,7 +43,7 @@
                             <figcaption class="photos__figcaption">Башкирия</figcaption>
                         </figure>
                         <div class="photos__like-container">
-                            <button class="photos__like-button photos__like-button_liked"></button>
+                            <button class="photos__like-button" type="button"></button>
                             <span class="photos__like-count">0</span>
                         </div>
                     </li>
@@ -53,7 +53,7 @@
                             <figcaption class="photos__figcaption">Эльбрус</figcaption>
                         </figure>
                         <div class="photos__like-container">
-                            <button class="photos__like-button photos__like-button_liked"></button>
+                            <button class="photos__like-button" type="button"></button>
                             <span class="photos__like-count">0</span>
                         </div>
                     </li>
@@ -63,7 +63,7 @@
                             <figcaption class="photos__figcaption">Камчатка</figcaption>
                         </figure>
                         <div class="photos__like-container">
-                            <button class="photos__like-button photos__like-button_liked"></button>
+                            <button class="photos__like-button" type="button"></button>
                             <span class="photos__like-count">0</span>
                         </div>
                     </li>
@@ -73,7 +73,7 @@
                             <figcaption class="photos__figcaption">Владивосток</figcaption>
                         </figure>
                         <div class="photos__like-container">
-                            <button class="photos__like-button photos__like-button_liked"></button>
+                            <button class="photos__like-button" type="button"></button>
                             <span class="photos__like-count">0</span>
                         </div>
                     </li>
@@ -83,7 +83,7 @@
                             <figcaption class="photos__figcaption">Якутия</figcaption>
                         </figure>
                         <div class="photos__like-container">
-                            <button class="photos__like-button photos__like-button_liked"></button>
+                            <button class="photos__like-button" type="button"></button>
                             <span class="photos__like-count">0</span>
                         </div>
                     </li>
@@ -98,14 +98,14 @@
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <form class="form">
                     <fieldset class="form__container">
-                        <input type="text" class="form__name" placeholder="Ваше имя" value="Жак-Ив Кусто">
+                        <input type="text" class="form__input form__input_name" placeholder="Ваше имя" name="name" value="Жак-Ив Кусто">
                         <div class="form__line"></div>
-                        <input type="text" class="form__job" placeholder="Краткое описание" value="Исследователь океана">
+                        <input type="text" class="form__input form__input_job" placeholder="Краткое описание" name="job" value="Исследователь океана">
                         <div class="form__line"></div>
                         <button type="submit" class="popup__save">Сохранить</button>
                     </fieldset>
                 </form>
-                <span class="popup__close"></span>
+                <button class="popup__close" type="button"></button>
             </div>
         </section>
     <script src="./skripts/index.js"></script>

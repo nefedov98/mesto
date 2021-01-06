@@ -1,6 +1,6 @@
 @import url(../vendor/normalize.css);
 @import url(../fonts//Inter/inter.css);
-@import url(../blocks/page.css);
+@import url(../blocks/page/page.css);
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__line/header__line.css);
 @import url(../blocks/logo/logo.css);
@@ -20,10 +20,9 @@
 @import url(../blocks/photos/__figcaption/photos__figcaption.css);
 @import url(../blocks/photos/__image/photos__image.css);
 @import url(../blocks/photos/__figcaption/photos__figcaption.css);
-@import url(../blocks/photos/__like/photos__like-container.css);
-@import url(../blocks/photos/__like/photos__like-button.css);
-@import url(../blocks/photos/__like/_liked/photos__like-button_liked.css);
-@import url(../blocks/photos/__like/photos__like-count.css);
+@import url(../blocks/photos/__like/__like-container/photos__like-container.css);
+@import url(../blocks/photos/__like/__like-button/photos__like-button.css);
+@import url(../blocks/photos/__like/__like-count/photos__like-count.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/overlay/overlay.css);
@@ -32,8 +31,9 @@
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__container/form__container.css);
-@import url(../blocks/form/__name/form__name.css);
+@import url(../blocks/form/__input/form__input.css);
+@import url(../blocks/form/__input/_name/form__input_name.css);
 @import url(../blocks/form/__line/form__line.css);
-@import url(../blocks/form/__job/form__job.css);
+@import url(../blocks/form/__input/_job/form__input_job.css);
 @import url(../blocks/popup/__save/popup__save.css);
 @import url(../blocks/overlay/_active/overlay_active.css);
