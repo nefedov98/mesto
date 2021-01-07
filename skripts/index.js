@@ -31,8 +31,8 @@ function handleFormSubmit (evt) {
                         // О том, как это делать, расскажем позже.
 
     // Находим поля формы в DOM
-    let nameInput = overlay.querySelector(".form__name")// Воспользуйтесь инструментом .querySelector()
-    let jobInput = overlay.querySelector(".form__job")// Воспользуйтесь инструментом .querySelector()
+    let nameInput = overlay.querySelector(".form__input_name")// Воспользуйтесь инструментом .querySelector()
+    let jobInput = overlay.querySelector(".form__input_job")// Воспользуйтесь инструментом .querySelector()
 
     // Получите значение полей из свойства value
     nameInput.getAttribute('value');
