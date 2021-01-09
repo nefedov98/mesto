@@ -6,18 +6,18 @@
     background-repeat: no-repeat;
     background-color: black;
     background-color: transparent;
-    background-size: 40px 40px;
+    background-size: 33px 33px;
     border: none;
     width: 40px;
     height: 40px;
     right: -50px;
     bottom: 345px;
     cursor: pointer;
+    transition: opacity 1s;
 }
 
 .popup__close:hover {
     opacity: 0.6;
-    transition: opacity 1s;
 }
 
 @media screen and (max-width: 800px) {
@@ -26,6 +26,6 @@
         width: 26px;
         height: 26px;
         right: 0px;
-        bottom: 360px;
+        bottom: 385px;
     }
 }

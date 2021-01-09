@@ -12,6 +12,7 @@
     height: 24px;
     align-self: center;
     cursor:pointer;
+    transition: opacity 1s;
 }
 
 @media screen and (max-width: 580px) {
@@ -24,5 +25,4 @@
 
 .profile__edit:hover {
     opacity: 0.6;
-    transition: opacity 1s;
 }

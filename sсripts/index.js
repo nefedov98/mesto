@@ -8,9 +8,9 @@ let name = document.querySelector('.profile__title');
 let job = document.querySelector('.profile__subtitle');
 
 function openPopup () {
-    popup.classList.add ('popup_active');
     nameInput.value = name.textContent;
     jobInput.value = job.textContent;
+    popup.classList.add ('popup_active');
 }
 
 function closePopup () {
@@ -29,8 +29,7 @@ popup.addEventListener('click', () => {
         closePopup();
     }
 })
-// боже, знали бы вы как я голову ломал с этим js почти припадки, истерики, слезы! 
-//но вроде все ок, и получилось простенько, разбил на две функции, текст берется со страницы и тд ..все ведь ок? 
+
 openButton.addEventListener('click', openPopup);
 closeButton.addEventListener('click', closePopup);
 formElement.addEventListener('submit', handleFormSubmit);
