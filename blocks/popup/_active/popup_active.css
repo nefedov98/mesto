@@ -1,4 +1,4 @@
-.overlay_active {
+.popup_active {
     display: flex;
     background: rgba(0, 0, 0, 0.5);
 }

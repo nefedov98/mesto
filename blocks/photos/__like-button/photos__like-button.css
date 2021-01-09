@@ -1,14 +1,12 @@
 .photos__like-button {
-    width: 21.76px;
-    height: 19.3px;
-    box-sizing: border-box;
+    padding: 0;
+    width: 22px;
+    height: 19px;
     border: none;
     cursor: pointer;
-    padding: 0;
     background-image: url(../../../images/like.svg);
-    background-position: 50%;
     background-repeat: no-repeat;
-
+    background-color: white;
 }
 
 .photos__like-button:hover {
