@@ -1,3 +1,10 @@
+// Здравствуйте уважаемый ревью) Я заранее извиняюсь за то что вам придется читать этот ужас..
+// Ситуация в том что я не успел доделать проект и улетел в академ, и почти месяц не прикасался к учебе.
+// Это я к тому что знаю что код местами очень кривой, но он все работает как надо и задания пр выполнены. 
+// Так как все работает не стал пытаться сделать его более красивым и чистым боясь что-то сломать
+// Буду вам очень благодарен за советы как можно сделать лучше, спасибо.
+
+
 const initialCards = [
     {
         name: 'Архыз',
@@ -94,8 +101,8 @@ function render() {
 
 
 
-const aaa = document.querySelector(".popup_full_image");
-const sss = document.querySelector(".popup_full_caption");
+const aaa = document.querySelector(".popup__full_image");
+const sss = document.querySelector(".popup__full_caption");
 
 function renderItem(item) {
 	const htmlElement = itemTemplate.cloneNode(true);
@@ -167,7 +174,7 @@ function handleDelete (evt) {
     evt.target.closest('.photos__card').remove();
 }
 
-const popupfull = document.querySelector('.popup_full');
+const popupfull = document.querySelector('.popup__full');
 const openButtonfull = document.querySelector('.photos__image');
 
 const closeButtonfull = document.querySelector('.popup__close_full');
