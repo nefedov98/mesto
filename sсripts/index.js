@@ -101,8 +101,8 @@ function render() {
 
 
 
-const aaa = document.querySelector(".popup__full_image");
-const sss = document.querySelector(".popup__full_caption");
+const aaa = document.querySelector(".popup__full-image");
+const sss = document.querySelector(".popup__full-caption");
 
 function renderItem(item) {
 	const htmlElement = itemTemplate.cloneNode(true);
@@ -174,7 +174,7 @@ function handleDelete (evt) {
     evt.target.closest('.photos__card').remove();
 }
 
-const popupfull = document.querySelector('.popup__full');
+const popupfull = document.querySelector('.popup_full');
 const openButtonfull = document.querySelector('.photos__image');
 
 const closeButtonfull = document.querySelector('.popup__close_full');

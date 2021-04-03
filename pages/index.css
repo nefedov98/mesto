@@ -39,7 +39,7 @@
 
 @import url(../blocks/photos/__like-button/_liked/photos__like-button_liked.css);
 
-@import url(../blocks/popup/__full/popup__full.css);
+@import url(../blocks/popup/_full/popup_full.css);
 
 @import url(../blocks/popup/__image-caption/popup__image-caption.css);
 
@@ -47,4 +47,4 @@
 
 @import url(../blocks/popup/__close/_full/popup__close_full.css);
 
-@import url(../blocks/popup/__full/_image/popup__full_image.css);
+@import url(../blocks/popup/__full/popup__full-image.css);
