@@ -32,3 +32,19 @@
 @import url(../blocks/form/__input/_job/form__input_job.css);
 @import url(../blocks/popup/__save/popup__save.css);
 @import url(../blocks/popup/_active/popup_active.css);
+
+@import url(../blocks/popup/_image/popup_image.css);
+
+@import url(../blocks/photos/__delete/photos__delete.css);
+
+@import url(../blocks/photos/__like-button/_liked/photos__like-button_liked.css);
+
+@import url(../blocks/popup/_full/popup_full.css);
+
+@import url(../blocks/popup/__image-caption/popup__image-caption.css);
+
+@import url(../blocks/popup/__image/popup__image.css);
+
+@import url(../blocks/popup/__close/_full/popup__close_full.css);
+
+@import url(../blocks/popup/_full/_image/popup_full_image.css);
