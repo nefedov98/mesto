@@ -1,4 +1,4 @@
-
+// Нуууууууу вроде как все) Спасибо вам большое за вашу работу и ваши советы! Это правда было очень полезно, вы крутой)
 const openButton = document.querySelector('.profile__edit');
 const popup = document.querySelector('.popup');
 const popupEdit = document.querySelector('.popup_edit');
@@ -8,14 +8,13 @@ const nameInput = popup.querySelector(".form__input_name");
 const jobInput = popup.querySelector(".form__input_job");
 const name = document.querySelector('.profile__title');
 const job = document.querySelector(".profile__subtitle");
-const ButtonAddImage = document.querySelector('.profile__add');
-const PopupAddImage = document.querySelector('.popup_image');
-const ButtonCloseImage = PopupAddImage.querySelector('.popup__close');
+const buttonAddImage = document.querySelector('.profile__add');
+const popupAddImage = document.querySelector('.popup_image');
+const buttonCloseImage = popupAddImage.querySelector('.popup__close');
 const titleInput = document.querySelector(".form__input_title");
 const linkInput = document.querySelector(".form__input_link");
 const photos = document.querySelector('.photos__list')
 const itemTemplate = document.querySelector('.item_template').content;
-const saveButton = document.querySelector(".popup__save_image");
 const formElementAdd = document.querySelector(".form_add");
 function openPopup (popup) {
     popup.classList.add ('popup_active');
@@ -38,15 +37,15 @@ function handleFormSubmit (evt) {
     closePopup(popupEdit);
 }
 
-popup.addEventListener('click', (event) => {
+popupEdit.addEventListener('click', (event) => {
     if (event.target === event.currentTarget) {
         closePopup(popupEdit);
     }
 })
 
-PopupAddImage.addEventListener('click', () => {
+popupAddImage.addEventListener('click', (event) => {
     if (event.target === event.currentTarget) {
-        closePopup(PopupAddImage);
+        closePopup(popupAddImage);
     }
 })
 
@@ -67,12 +66,12 @@ function renderItem(item) {
     htmlElement.querySelector('.photos__delete').addEventListener('click', handleDelete);
 
     img.addEventListener('click', () => {
-        transfer(item);
+        handlePreviewPicture(item);
     });
     return htmlElement;
 }
 
-function transfer (item) {
+function handlePreviewPicture (item) {
     nameImage.textContent = item.name ;
     srcImage.src = item.link;
     srcImage.alt = item.name;
@@ -92,9 +91,8 @@ function handleCreate(evt) {
     }
     const card = renderItem(item);    
     addCard(card);
-    titleInput.value = "";
-    linkInput.value = "";
-    closePopup(PopupAddImage);
+    formElementAdd.reset()
+    closePopup(popupAddImage);
 }
 
 initialCards.reverse().forEach(function (item) {
@@ -112,7 +110,7 @@ const openButtonFull = document.querySelector('.photos__image');
 const closeButtonFull = document.querySelector('.popup__close_full');
 
 
-popupFull.addEventListener('click', () => {
+popupFull.addEventListener('click', (event) => {
     if (event.target === event.currentTarget) {
         closePopup(popupFull);
     }
@@ -125,11 +123,11 @@ closeButton.addEventListener('click', () => {
 formElement.addEventListener('submit', handleFormSubmit);
 
 
-ButtonAddImage.addEventListener('click', () => {
-    openPopup(PopupAddImage);
+buttonAddImage.addEventListener('click', () => {
+    openPopup(popupAddImage);
 })
-ButtonCloseImage.addEventListener('click', () => {
-    closePopup(PopupAddImage);
+buttonCloseImage.addEventListener('click', () => {
+    closePopup(popupAddImage);
 })
 formElementAdd.addEventListener('submit', handleCreate);
 
