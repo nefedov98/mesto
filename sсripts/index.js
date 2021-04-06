@@ -1,4 +1,4 @@
-// Нуууууууу вроде как все) Спасибо вам большое за вашу работу и ваши советы! Это правда было очень полезно, вы крутой)
+// Нуууууууу вроде как все) Спасибо вам большое за вашу работу и ваши советы! Это правда было очень полезно, вы крутой!!)
 const openButton = document.querySelector('.profile__edit');
 const popup = document.querySelector('.popup');
 const popupEdit = document.querySelector('.popup_edit');
@@ -52,6 +52,11 @@ popupAddImage.addEventListener('click', (event) => {
 const srcImage = document.querySelector(".popup__full-image");
 const nameImage = document.querySelector(".popup__full-caption");
 
+handleLikeIcon  
+function handleLikeIcon (event) {
+    event.target.classList.toggle('photos__like-button_liked');
+}
+
 function renderItem(item) {
 	const htmlElement = itemTemplate.cloneNode(true);
     const text = htmlElement.querySelector('.photos__title');
@@ -59,10 +64,10 @@ function renderItem(item) {
     const img = htmlElement.querySelector('.photos__image');
     img.src = item.link;
     img.alt = item.name;
-    htmlElement.querySelector('.photos__like-button').addEventListener('click', function (evt) {
-        evt.target.classList.toggle('photos__like-button_liked');
+    const likeButton = htmlElement.querySelector(".photos__like-button");
+    likeButton.addEventListener('click', (event) => {
+        handleLikeIcon(event);
     });
-
     htmlElement.querySelector('.photos__delete').addEventListener('click', handleDelete);
 
     img.addEventListener('click', () => {
@@ -131,10 +136,6 @@ buttonCloseImage.addEventListener('click', () => {
 })
 formElementAdd.addEventListener('submit', handleCreate);
 
-
-openButtonFull.addEventListener('click', () => {
-    openPopup(popupFull);
-})
 closeButtonFull.addEventListener('click', () => {
     closePopup(popupFull);
 })
