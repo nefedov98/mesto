@@ -1,4 +1,3 @@
-// Нуууууууу вроде как все) Спасибо вам большое за вашу работу и ваши советы! Это правда было очень полезно, вы крутой!!)
 const openButton = document.querySelector('.profile__edit');
 const popup = document.querySelector('.popup');
 const popupEdit = document.querySelector('.popup_edit');
@@ -127,7 +126,6 @@ closeButton.addEventListener('click', () => {
 })
 formElement.addEventListener('submit', handleFormSubmit);
 
-
 buttonAddImage.addEventListener('click', () => {
     openPopup(popupAddImage);
 })
@@ -139,3 +137,86 @@ formElementAdd.addEventListener('submit', handleCreate);
 closeButtonFull.addEventListener('click', () => {
     closePopup(popupFull);
 })
+
+
+
+const form = document.querySelector(validationConfig.form);
+
+function eventHandler (event) {
+    const input = event.target;
+    setCustomError(input);
+    setFieldError(input);
+    setSubmitButtonState(form);
+}
+
+const formUser = document.querySelector(validationConfig.formUser);
+
+formUser.addEventListener('submit', handleSubmitForm);
+
+formUser.addEventListener('input', eventHandler)
+
+const formPlace = document.querySelector(validationConfig.formPlace);
+
+formPlace.addEventListener('submit', handleSubmitForm);
+
+formPlace.addEventListener('input', eventHandler);
+
+function handleSubmitForm(event) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const isValid = form.checkValidity();
+    if (isValid) {
+        console.log('Форма валидна!');
+        form.reset();
+    } else {
+        console.log('Форма НЕ валидна!');
+    }
+}
+
+function setFieldError(field) {
+    const span = field.nextElementSibling;
+    span.textContent = field.validationMessage;
+}
+
+function setSubmitButtonState(form) {
+    const button = form.querySelector(validationConfig.button);
+    const isValid = form.checkValidity();
+    if (isValid) {
+        button.removeAttribute('disabled');
+        button.classList.remove('popup__save_invalid');
+    } else {
+        button.setAttribute('disabled', true);
+        button.classList.add('popup__save_invalid');
+    }
+}
+
+function setCustomError(input) {
+    const validity = input.validity;
+    input.setCustomValidity('');
+    if (validity.tooShort || validity.tooLong) {
+        const current = input.value.length;
+        const min = input.getAttribute('minlength');
+        const max = input.getAttribute('maxlength')
+        input.setCustomValidity(`Строка слишком короткая. Введено ${current} символов, а должно быть от ${min} до ${max}`);
+    }
+    else if (validity.typeMismatch && input.type === 'url') {
+        input.setCustomValidity('Здесь должна быть ссылка');
+    }
+}
+
+function keyHandler (evt) {
+    if (evt.key === "Escape"){
+        const openedPopup = document.querySelector('.popup_active');
+        openedPopup.classList.remove('popup_active')
+    }
+}
+
+document.addEventListener('keydown', keyHandler);
+
+
+
+
+
+
+
+
