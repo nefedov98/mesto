@@ -45,3 +45,5 @@
 @import url(../blocks/form/__input/form__input-error.css);
 
 @import url(../blocks/popup/__save/_invalid/popup__save_invalid.css);
+
+@import url(../blocks/form/__input/_invalid/form__input_invalid.css);
