@@ -1,35 +1,21 @@
-
+// в общем не знаю как хорошо я справился, но я старался и сделал все что мог... в любом случае спасибо вам за вашу работу!!
 const validationConfig = {
-    formUser: '.form[name="form_name"]',
-    formPlace: '.form[name="form_place"]',
     button: '.popup__save',
-    form :'.form'
+    form : '.form',
+    inputSelector: '.form__input'
 }  
 
 
 const form = document.querySelector(validationConfig.form);
-const formUser = document.querySelector(validationConfig.formUser);
-const formPlace = document.querySelector(validationConfig.formPlace);
-formUser.addEventListener('submit', handleSubmitForm);
+form.addEventListener('submit', handleSubmitForm);
 
-formUser.addEventListener('input', eventHandlerformUser);
+form.addEventListener('input', eventHandler);
 
-formPlace.addEventListener('submit', handleSubmitForm);
-
-formPlace.addEventListener('input', eventHandlerformPlace);
-
-function eventHandlerformUser (event) {
+function eventHandler(event) {
     const input = event.target;
     setCustomError(input);
     setFieldError(input);
-    setSubmitButtonState(formUser);
-}
-
-function eventHandlerformPlace (event) {
-    const input = event.target;
-    setCustomError(input);
-    setFieldError(input);
-    setSubmitButtonState(formPlace);
+    setSubmitButtonState(form);
 }
 
 function handleSubmitForm(event) {
@@ -81,23 +67,31 @@ function setCustomError(input) {
     }
 }
 
-function keyHandler (evt) {
-    if (evt.key === "Escape"){
-        const openedPopup = document.querySelector('.popup_active');
-        openedPopup.classList.remove('popup_active')
-    }
+
+
+  function setEventListeners(form) {
+    form.addEventListener('input', (evt) => {
+    const input = evt.target;
+    setCustomError(input);
+    setFieldError(input);
+    setSubmitButtonState(form);
+  });
+ }
+
+
+  function enableValidation(validationConfig) {
+    const formList = Array.from(document.querySelectorAll(validationConfig.form));
+    formList.forEach((form) => {
+        form.addEventListener('submit', (evt) => {
+          evt.preventDefault();
+        });
+
+
+      setEventListeners(form);
+  });
 }
 
-document.addEventListener('keydown', keyHandler);
-
-const enableValidation = () => {
-    const formList = Array.from(document.querySelectorAll('.form'));
-    formList.forEach((formElement) => {
-        formElement.addEventListener('submit', function (evt) {
-        evt.preventDefault();
-    });
-    });
-};
-
 enableValidation(validationConfig);
+
+
 

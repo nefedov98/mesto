@@ -1,11 +1,10 @@
 const openButton = document.querySelector('.profile__edit');
-const popup = document.querySelector('.popup');
 const popupEdit = document.querySelector('.popup_edit');
-const closeButton = popup.querySelector('.popup__close');
-const formElement = popup.querySelector(".form");
-const nameInput = popup.querySelector(".form__input_name");
-const jobInput = popup.querySelector(".form__input_job");
-const name = document.querySelector('.profile__title');
+const closeButtonEdit = popupEdit.querySelector('.popup__close');
+const formElementEdit = popupEdit.querySelector(".form");
+const nameInput = popupEdit.querySelector(".form__input_name");
+const jobInput = popupEdit.querySelector(".form__input_job");
+const profileNameElement = document.querySelector('.profile__title');
 const job = document.querySelector(".profile__subtitle");
 const buttonAddImage = document.querySelector('.profile__add');
 const popupAddImage = document.querySelector('.popup_image');
@@ -13,25 +12,27 @@ const buttonCloseImage = popupAddImage.querySelector('.popup__close');
 const titleInput = document.querySelector(".form__input_title");
 const linkInput = document.querySelector(".form__input_link");
 const photos = document.querySelector('.photos__list')
-const itemTemplate = document.querySelector('.item_template').content;
+const itemTemplate = document.querySelector('.item-template').content;
 const formElementAdd = document.querySelector(".form_add");
 function openPopup (popup) {
     popup.classList.add ('popup_active');
+    document.addEventListener('keydown', keyHandler);
 }
 
 function closePopup (popup) {
     popup.classList.remove ('popup_active');
+    document.removeEventListener('keydown', keyHandler);
 }
 
 function handleEditProfileClick () {
-    nameInput.value = name.textContent;
+    nameInput.value = profileNameElement.textContent;
     jobInput.value = job.textContent;
     openPopup(popupEdit);
 }
 
 function handleFormSubmit (evt) {
     evt.preventDefault();
-    name.textContent = nameInput.value;
+    profileNameElement.textContent = nameInput.value;
     job.textContent = jobInput.value;
     console.log('sssss')
     closePopup(popupEdit);
@@ -52,7 +53,6 @@ popupAddImage.addEventListener('click', (event) => {
 const srcImage = document.querySelector(".popup__full-image");
 const nameImage = document.querySelector(".popup__full-caption");
 
-handleLikeIcon  
 function handleLikeIcon (event) {
     event.target.classList.toggle('photos__like-button_liked');
 }
@@ -97,6 +97,10 @@ function handleCreate(evt) {
     const card = renderItem(item);    
     addCard(card);
     formElementAdd.reset()
+    // Есть предположение что такой способ не самый лучший, но с ним все ок работает..
+    buttonSaveImage = document.querySelector('.popup__save_image');
+    buttonSaveImage.setAttribute('disabled', true);
+    buttonSaveImage.classList.add('popup__save_invalid');
     closePopup(popupAddImage);
 }
 
@@ -121,11 +125,18 @@ popupFull.addEventListener('click', (event) => {
     }
 })
 
+function keyHandler (evt) {
+    if (evt.key === "Escape"){
+        const openedPopup = document.querySelector('.popup_active');
+        openedPopup.classList.remove('popup_active')
+    }
+}
+
 openButton.addEventListener('click', handleEditProfileClick);
-closeButton.addEventListener('click', () => {
+closeButtonEdit.addEventListener('click', () => {
     closePopup(popupEdit);
 })
-formElement.addEventListener('submit', handleFormSubmit);
+formElementEdit.addEventListener('submit', handleFormSubmit);
 
 buttonAddImage.addEventListener('click', () => {
     openPopup(popupAddImage);

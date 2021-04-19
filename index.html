@@ -34,7 +34,7 @@
         <div class="popup popup_edit">
             <div class="popup__container">
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <form class="form form_edit" name="form_name" novalidate>
+                <form class="form form_edit" name="form-name" novalidate>
                     <fieldset class="form__container">
                         <input id="name-input" type="text" class="form__input form__input_name " placeholder="Ваше имя" name="name" value="" minlength="2" maxlength="40" required="">
                         <span class="form__input-error"></span>
@@ -49,11 +49,11 @@
         <div class="popup popup_image">
             <div class="popup__container">
                 <h2 class="popup__title">Новое место</h2>
-                <form class="form form_add" name="form_place" novalidate>
+                <form class="form form_add" name="form-place" novalidate>
                     <fieldset class="form__container">
-                        <input type="text" class="form__input form__input_title" placeholder="Название" name="name" value="" minlength="2" maxlength="30" required="">
+                        <input type="text" class="form__input form__input_title" placeholder="Название" name="name-place" value="" minlength="2" maxlength="30" required="">
                         <span class="form__input-error"></span>
-                        <input type="url" class="form__input form__input_link" placeholder="Ссылка на картинку" name="job" value="" required="">
+                        <input type="url" class="form__input form__input_link" placeholder="Ссылка на картинку" name="image-place" value="" required="">
                         <span class="form__input-error"></span>
                         <button disabled type="submit" class="popup__save popup__save_image popup__save_invalid" aria-label="сохранить">Создать</button>
                     </fieldset>
@@ -62,13 +62,13 @@
             </div>
         </div>
         <div class="popup popup_full">
-            <figure class="popup__full-imageCaption">
+            <figure class="popup__full-image-caption">
                 <img class="popup__full-image" src=" " alt="Картинка">
                 <p class="popup__full-caption"></p>
                 <button class="popup__close popup__close_full" type="button" aria-label="закрыть"></button> 
             </figure>       
         </div>
-        <template class="item_template">
+        <template class="item-template">
             <li class="photos__card">
                 <img src=" " class="photos__image" alt="Картинка">
             <div class="photos__title-like"> 
