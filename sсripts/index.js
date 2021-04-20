@@ -14,6 +14,7 @@ const linkInput = document.querySelector(".form__input_link");
 const photos = document.querySelector('.photos__list')
 const itemTemplate = document.querySelector('.item-template').content;
 const formElementAdd = document.querySelector(".form_add");
+const buttonSaveImage = document.querySelector('.popup__save_image');
 function openPopup (popup) {
     popup.classList.add ('popup_active');
     document.addEventListener('keydown', keyHandler);
@@ -97,10 +98,8 @@ function handleCreate(evt) {
     const card = renderItem(item);    
     addCard(card);
     formElementAdd.reset()
-    // Есть предположение что такой способ не самый лучший, но с ним все ок работает..
-    buttonSaveImage = document.querySelector('.popup__save_image');
     buttonSaveImage.setAttribute('disabled', true);
-    buttonSaveImage.classList.add('popup__save_invalid');
+    buttonSaveImage.classList.add(validationConfig.buttonInvalid);
     closePopup(popupAddImage);
 }
 

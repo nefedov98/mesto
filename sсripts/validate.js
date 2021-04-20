@@ -2,7 +2,9 @@
 const validationConfig = {
     button: '.popup__save',
     form : '.form',
-    inputSelector: '.form__input'
+    inputSelector: '.form__input',
+    buttonInvalid: 'popup__save_invalid',
+    inputInvalid: 'form__input_invalid'
 }  
 
 
@@ -11,11 +13,11 @@ form.addEventListener('submit', handleSubmitForm);
 
 form.addEventListener('input', eventHandler);
 
-function eventHandler(event) {
+function eventHandler(event, config) {
     const input = event.target;
-    setCustomError(input);
-    setFieldError(input);
-    setSubmitButtonState(form);
+    setCustomError(input, config);
+    setFieldError(input, config);
+    setSubmitButtonState(form, config);
 }
 
 function handleSubmitForm(event) {
@@ -34,21 +36,20 @@ function setFieldError(field) {
     span.textContent = field.validationMessage;
 }
 
-function setSubmitButtonState(form) {
-    const input = form.querySelectorAll('.form__input');
-    const button = form.querySelector(validationConfig.button);
-    const isValid = form.checkValidity();
+function setSubmitButtonState(form, config) {
+    const button = form.querySelector(validationConfig.button); // почему-то в этих моментах если я передаю просто config, 
+    const isValid = form.checkValidity();                       //консоль выдает ошибку, но все работает, а если вот так то все отлично и без ошибок
     console.log(isValid)
     if (isValid) {
         button.removeAttribute('disabled');
-        button.classList.remove('popup__save_invalid');
+        button.classList.remove(validationConfig.buttonInvalid); //тут
     } else {
         button.setAttribute('disabled', true);
-        button.classList.add('popup__save_invalid');
+        button.classList.add(config.buttonInvalid);
     }
 }
 
-function setCustomError(input) {
+function setCustomError(input, config) {
     const validity = input.validity;
     input.setCustomValidity('');
     if (validity.tooShort || validity.tooLong) {
@@ -56,38 +57,38 @@ function setCustomError(input) {
         const min = input.getAttribute('minlength');
         const max = input.getAttribute('maxlength')
         input.setCustomValidity(`Строка слишком короткая. Введено ${current} символов, а должно быть от ${min} до ${max}`);
-        input.classList.add('form__input_invalid');
+        input.classList.add(config.inputInvalid);
     }
     else if (validity.typeMismatch && input.type === 'url') {
         input.setCustomValidity('Здесь должна быть ссылка');
-        input.classList.add('form__input_invalid');
+        input.classList.add(config.inputInvalid);
     }
     else {
-        input.classList.remove('form__input_invalid');
+        input.classList.remove(validationConfig.inputInvalid); //тут, а так вроде все отлично)
     }
 }
 
 
 
-  function setEventListeners(form) {
+  function setEventListeners(form, config) {
     form.addEventListener('input', (evt) => {
     const input = evt.target;
-    setCustomError(input);
-    setFieldError(input);
-    setSubmitButtonState(form);
+    setCustomError(input, config);
+    setFieldError(input, config);
+    setSubmitButtonState(form, config);
   });
  }
 
 
-  function enableValidation(validationConfig) {
-    const formList = Array.from(document.querySelectorAll(validationConfig.form));
+  function enableValidation(config) {
+    const formList = Array.from(document.querySelectorAll(config.form));
     formList.forEach((form) => {
         form.addEventListener('submit', (evt) => {
           evt.preventDefault();
         });
 
 
-      setEventListeners(form);
+      setEventListeners(form, config);
   });
 }
 
