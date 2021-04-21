@@ -1,4 +1,4 @@
-// в общем не знаю как хорошо я справился, но я старался и сделал все что мог... в любом случае спасибо вам за вашу работу!!
+// спасибо что помогли мне разобраться в моем же коде))
 const validationConfig = {
     button: '.popup__save',
     form : '.form',
@@ -7,42 +7,18 @@ const validationConfig = {
     inputInvalid: 'form__input_invalid'
 }  
 
-
-const form = document.querySelector(validationConfig.form);
-form.addEventListener('submit', handleSubmitForm);
-
-form.addEventListener('input', eventHandler);
-
-function eventHandler(event, config) {
-    const input = event.target;
-    setCustomError(input, config);
-    setFieldError(input, config);
-    setSubmitButtonState(form, config);
-}
-
-function handleSubmitForm(event) {
-    event.preventDefault();
-    const form = event.currentTarget;
-    const isValid = form.checkValidity();
-    if (isValid) {
-        console.log('Форма валидна!');
-    } else {
-        console.log('Форма НЕ валидна!');
-    }
-}
-
 function setFieldError(field) {
     const span = field.nextElementSibling;
     span.textContent = field.validationMessage;
 }
 
 function setSubmitButtonState(form, config) {
-    const button = form.querySelector(validationConfig.button); // почему-то в этих моментах если я передаю просто config, 
-    const isValid = form.checkValidity();                       //консоль выдает ошибку, но все работает, а если вот так то все отлично и без ошибок
+    const button = form.querySelector(config.button); 
+    const isValid = form.checkValidity();                       
     console.log(isValid)
     if (isValid) {
         button.removeAttribute('disabled');
-        button.classList.remove(validationConfig.buttonInvalid); //тут
+        button.classList.remove(config.buttonInvalid); 
     } else {
         button.setAttribute('disabled', true);
         button.classList.add(config.buttonInvalid);
@@ -64,7 +40,7 @@ function setCustomError(input, config) {
         input.classList.add(config.inputInvalid);
     }
     else {
-        input.classList.remove(validationConfig.inputInvalid); //тут, а так вроде все отлично)
+        input.classList.remove(config.inputInvalid); 
     }
 }
 
@@ -74,7 +50,7 @@ function setCustomError(input, config) {
     form.addEventListener('input', (evt) => {
     const input = evt.target;
     setCustomError(input, config);
-    setFieldError(input, config);
+    setFieldError(input);
     setSubmitButtonState(form, config);
   });
  }
