@@ -1,3 +1,8 @@
+import { initialCards } from './initial-сards.js';
+import { Card } from './cards.js';
+import { FormValidator } from './validate.js';
+import { validationConfig } from './validate.js'
+
 const openButton = document.querySelector('.profile__edit');
 const popupEdit = document.querySelector('.popup_edit');
 const closeButtonEdit = popupEdit.querySelector('.popup__close');
@@ -148,8 +153,5 @@ formElementAdd.addEventListener('submit', handleCreate);
 closeButtonFull.addEventListener('click', () => {
     closePopup(popupFull);
 })
-
-
-
 
 
