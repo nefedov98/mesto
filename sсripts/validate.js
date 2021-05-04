@@ -7,10 +7,6 @@ export class FormValidator {
         this._config = config;
     }
 
-    enableValidation(){
-
-    }
-
     _setFieldError(field) {
         const span = field.nextElementSibling;
         span.textContent = field.validationMessage;

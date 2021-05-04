@@ -1,5 +1,5 @@
 import { initialCards } from './initial-сards.js';
-import { Card } from './cards.js';
+import { Card } from './card.js';
 import { FormValidator } from './validate.js';
 import { validationConfig } from './validate.js'
 
@@ -16,6 +16,8 @@ const popupAddImage = document.querySelector('.popup_image');
 const buttonCloseImage = popupAddImage.querySelector('.popup__close');
 const titleInput = document.querySelector(".form__input_title");
 const linkInput = document.querySelector(".form__input_link");
+const nameForm = document.querySelector(".form__input_name");
+const aboutForm = document.querySelector(".form__input_job");
 const photos = document.querySelector('.photos__list')
 const itemTemplate = document.querySelector('.item-template').content;
 const formElementAdd = document.querySelector(".form_add");
@@ -36,7 +38,7 @@ function handleEditProfileClick () {
     openPopup(popupEdit);
 }
 
-function handleFormSubmit (evt) {
+function handleProfileSubmit  (evt) {
     evt.preventDefault();
     profileNameElement.textContent = nameInput.value;
     job.textContent = jobInput.value;
@@ -140,7 +142,7 @@ openButton.addEventListener('click', handleEditProfileClick);
 closeButtonEdit.addEventListener('click', () => {
     closePopup(popupEdit);
 })
-formElementEdit.addEventListener('submit', handleFormSubmit);
+formElementEdit.addEventListener('submit', handleProfileSubmit );
 
 buttonAddImage.addEventListener('click', () => {
     openPopup(popupAddImage);
@@ -155,3 +157,89 @@ closeButtonFull.addEventListener('click', () => {
 })
 
 
+/*Здравствуйте, уважаемый ревью, я знаю что с вами нельзя вести беседы. Но я уже себе голову сломал,
+не понимаю как мне сделать все через эти блин класс, как сделать их полезными. Можно совет?) буду крайне благодарен..
+ниже жалкие попытки что-то создать основываясь на собственных умственных потугах и примере кода товарищей..
+дайте пинок пожалуйста.. а я пока почитаю теорию снова
+
+
+
+
+
+
+
+
+
+
+
+
+
+Нужно в index.js там где массив изначальных данных перебираешь на каждой итерации создавать инстанс класса Card,
+вызвать у него метод, который возвращает заполненый шаблон и вставлять этот результат на страницу. Что-то вроде
+initialCards.forEach(()=>{
+   const card = new Card({text: ..., link: ...})
+   list.prepend(card.getCard())
+})
+
+
+function  openPicture (name, link) { //принимает данные
+    nameImage.textContent = item.name ;
+    srcImage.src = item.link;
+    srcImage.alt = item.name;
+    openPopup(popupFull);
+}  
+
+
+
+ function handleFormSubmitPopupEdit(evt) {
+    evt.preventDefault();
+  
+    profileNameElement.textContent = nameForm.value;
+    job.textContent = aboutForm.value;
+  
+    closePopup(popupEdit);
+  }
+  
+  function handleFormSubmitPopupAdd(evt) {
+    evt.preventDefault();
+  
+    const placeElement = createCard({ name: titleInput.value, link: linkInput.value });
+  
+    photos.prepend(placeElement);
+    closePopup(popupAddImage);
+    formElementAdd.reset();
+  }
+  
+  function createCard(item) {
+    const card = new Card(item, "#place-card", openPicture);
+    const cardElement = card.generateCard();
+  
+    return cardElement;
+  }
+  
+  function renderList() {
+    initialCards.forEach((item) => {
+      const cardElement = createCard(item);
+  
+      document.querySelector(".photos").append(cardElement);
+    });
+  }
+  
+  renderList();
+  
+  
+  formElementAdd.addEventListener("submit", handleFormSubmitPopupAdd);
+  
+  openButton.addEventListener("click", handleEditProfileClick);
+  buttonAddImage.addEventListener("click", () => {
+    openPopup(popupAddImage);
+});
+  
+buttonCloseImage.addEventListener("click", () => closePopup(popupAddImage));
+  closePicBtn.addEventListener("click", () => closePopup(popupFull));
+  closeButtonEdit.addEventListener("click", () => closePopup(popupEdit));
+  
+  popupFormEdit.addEventListener("submit", handleFormSubmitPopupEdit);
+  
+  
+ */
