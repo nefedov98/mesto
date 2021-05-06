@@ -7,13 +7,9 @@ export class Card {
     }  
 
     _getTemplate() {
-        const placeElement = document
-            .querySelector(this._cardSelector)
-            .content
-            .querySelector('.photos__card')
-            .cloneNode(true);
+        const cardElement = document.querySelector(this._cardSelector).content.querySelector(".photos__card").cloneNode(true);
 
-        return placeElement;
+        return cardElement;
     }
 
     _setEventListeners() {
@@ -23,7 +19,7 @@ export class Card {
         this._element.querySelector('.photos__like-button').addEventListener('click', () => {
             this._toggleLike();
         });
-        this._element.querySelector('.element__image').addEventListener('click', () => {
+        this._element.querySelector('.photos__image').addEventListener('click', () => {
             this._handleOpenPopup(this._text, this._image) //передаем данные
         }); 
     }
@@ -33,18 +29,18 @@ export class Card {
     }
 
     _deleteCard() {
-        targetPlace.remove();
+        this._element.remove();
         this._element = null;
     }
 
     generateCard() {
         this._element = this._getTemplate();
         this._titleElement = this._element.querySelector(".photos__title");
-        this._titleElement = this._name;
+        this._titleElement.textContent = this._text;
         this._imageElement = this._element.querySelector(".photos__image");
-        this._imageElement = this._link;
+        this._imageElement.src = this._image;
         this._altElement = this._element.querySelector(".photos__image");
-        this._altElement = this._link;
+        this._altElement.alt = this._image;
 
         this._likeButton = this._element.querySelector(".photos__like-button");
         this._deleteButton = this._element.querySelector(".photos__delete");

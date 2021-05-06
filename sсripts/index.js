@@ -1,7 +1,6 @@
 import { initialCards } from './initial-сards.js';
 import { Card } from './card.js';
 import { FormValidator } from './validate.js';
-import { validationConfig } from './validate.js'
 
 const openButton = document.querySelector('.profile__edit');
 const popupEdit = document.querySelector('.popup_edit');
@@ -61,37 +60,6 @@ popupAddImage.addEventListener('click', (event) => {
 const srcImage = document.querySelector(".popup__full-image");
 const nameImage = document.querySelector(".popup__full-caption");
 
-function handleLikeIcon (event) {
-    event.target.classList.toggle('photos__like-button_liked');
-}
-
-function renderItem(item) {
-	const htmlElement = itemTemplate.cloneNode(true);
-    const text = htmlElement.querySelector('.photos__title');
-    text.textContent = item.name;
-    const img = htmlElement.querySelector('.photos__image');
-    img.src = item.link;
-    img.alt = item.name;
-    const likeButton = htmlElement.querySelector(".photos__like-button");
-    likeButton.addEventListener('click', (event) => {
-        handleLikeIcon(event);
-    });
-    htmlElement.querySelector('.photos__delete').addEventListener('click', handleDelete);
-
-    img.addEventListener('click', () => {
-        handlePreviewPicture(item);
-    });
-    return htmlElement;
-}
-
-function handlePreviewPicture (item) {
-    nameImage.textContent = item.name ;
-    srcImage.src = item.link;
-    srcImage.alt = item.name;
-    openPopup(popupFull);
-}
-
-
 function addCard (card) {
     photos.prepend(card);
 }
@@ -102,28 +70,17 @@ function handleCreate(evt) {
         name: titleInput.value,
         link: linkInput.value
     }
-    const card = renderItem(item);    
-    addCard(card);
+    const card = new Card(item, '.item-template', openPicture)
+    photos.prepend(card.generateCard())
+    
     formElementAdd.reset()
     buttonSaveImage.setAttribute('disabled', true);
-    buttonSaveImage.classList.add(validationConfig.buttonInvalid);
     closePopup(popupAddImage);
 }
 
-initialCards.reverse().forEach(function (item) {
-    const card = renderItem(item);
-    addCard(card);
-})
-
-function handleDelete (evt) {
-    evt.target.closest('.photos__card').remove();
-}
-
 const popupFull = document.querySelector('.popup_full');
-const openButtonFull = document.querySelector('.photos__image');
 
 const closeButtonFull = document.querySelector('.popup__close_full');
-
 
 popupFull.addEventListener('click', (event) => {
     if (event.target === event.currentTarget) {
@@ -156,90 +113,41 @@ closeButtonFull.addEventListener('click', () => {
     closePopup(popupFull);
 })
 
+initialCards.forEach((item)=>{
+    const card = new Card(item, '.item-template', openPicture)
+    photos.prepend(card.generateCard())
+ }) 
 
-/*Здравствуйте, уважаемый ревью, я знаю что с вами нельзя вести беседы. Но я уже себе голову сломал,
-не понимаю как мне сделать все через эти блин класс, как сделать их полезными. Можно совет?) буду крайне благодарен..
-ниже жалкие попытки что-то создать основываясь на собственных умственных потугах и примере кода товарищей..
-дайте пинок пожалуйста.. а я пока почитаю теорию снова
-
-
-
-
-
-
-
-
-
-
-
-
-
-Нужно в index.js там где массив изначальных данных перебираешь на каждой итерации создавать инстанс класса Card,
-вызвать у него метод, который возвращает заполненый шаблон и вставлять этот результат на страницу. Что-то вроде
-initialCards.forEach(()=>{
-   const card = new Card({text: ..., link: ...})
-   list.prepend(card.getCard())
-})
-
-
-function  openPicture (name, link) { //принимает данные
-    nameImage.textContent = item.name ;
-    srcImage.src = item.link;
-    srcImage.alt = item.name;
+function  openPicture (name, link) { 
+    nameImage.textContent = name;
+    srcImage.src = link;
+    srcImage.alt = name;
     openPopup(popupFull);
 }  
 
 
 
- function handleFormSubmitPopupEdit(evt) {
-    evt.preventDefault();
-  
-    profileNameElement.textContent = nameForm.value;
-    job.textContent = aboutForm.value;
-  
-    closePopup(popupEdit);
-  }
-  
-  function handleFormSubmitPopupAdd(evt) {
-    evt.preventDefault();
-  
-    const placeElement = createCard({ name: titleInput.value, link: linkInput.value });
-  
-    photos.prepend(placeElement);
-    closePopup(popupAddImage);
-    formElementAdd.reset();
-  }
-  
-  function createCard(item) {
-    const card = new Card(item, "#place-card", openPicture);
-    const cardElement = card.generateCard();
-  
-    return cardElement;
-  }
-  
-  function renderList() {
-    initialCards.forEach((item) => {
-      const cardElement = createCard(item);
-  
-      document.querySelector(".photos").append(cardElement);
-    });
-  }
-  
-  renderList();
-  
-  
-  formElementAdd.addEventListener("submit", handleFormSubmitPopupAdd);
-  
-  openButton.addEventListener("click", handleEditProfileClick);
-  buttonAddImage.addEventListener("click", () => {
-    openPopup(popupAddImage);
-});
-  
-buttonCloseImage.addEventListener("click", () => closePopup(popupAddImage));
-  closePicBtn.addEventListener("click", () => closePopup(popupFull));
-  closeButtonEdit.addEventListener("click", () => closePopup(popupEdit));
-  
-  popupFormEdit.addEventListener("submit", handleFormSubmitPopupEdit);
-  
-  
- */
+const editForm = document.forms.editForm;
+const addForm = document.forms.addForm;
+
+const addFormValidation =  new FormValidator({
+    button: '.popup__save',
+    form : '.form',
+    inputSelector: '.form__input',
+    buttonInvalid: 'popup__save_invalid',
+    inputInvalid: 'form__input_invalid'
+}, addForm).enableValidation();
+
+const editFormValidation =  new FormValidator({
+    button: '.popup__save',
+    form : '.form',
+    inputSelector: '.form__input',
+    buttonInvalid: 'popup__save_invalid',
+    inputInvalid: 'form__input_invalid'
+}, editForm).enableValidation();
+
+
+/* Ну?))) что скажите, уважаемый ревью? Я все сделал сам, правда. Даже не спрашивал никого!
+Хотя это было очень больно в некоторых моментах... Ваши подсказки очень помогли, спасибо, правда!
+Надеюсь в этот раз ошибок будет немного.. Карточки создаются через класс, с валидацие вроде все ок. Да помогут мне боги.
+Спасибо за вашу работу)*/

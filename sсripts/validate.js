@@ -3,8 +3,10 @@
 
 
 export class FormValidator {
-    constructor(config) {
+    constructor(config, form) {
         this._config = config;
+        this._form = form;
+        this._button = form.querySelector(this._config.button);
     }
 
     _setFieldError(field) {
@@ -12,16 +14,15 @@ export class FormValidator {
         span.textContent = field.validationMessage;
     }
     
-    _setSubmitButtonState(form) {
-        const button = form.querySelector(this._config.button); 
-        const isValid = form.checkValidity();                       
+    _setSubmitButtonState() {
+        const isValid = this._form.checkValidity();                       
         console.log(isValid)
         if (isValid) {
-            button.removeAttribute('disabled');
-            button.classList.remove(this._config.buttonInvalid); 
+            this._button.removeAttribute('disabled');
+            this._button.classList.remove(this._config.buttonInvalid); 
         } else {
-            button.setAttribute('disabled', true);
-            button.classList.add(this._config.buttonInvalid);
+            this._button.setAttribute('disabled', true);
+            this._button.classList.add(this._config.buttonInvalid);
         }
     }
     
@@ -46,12 +47,12 @@ export class FormValidator {
     
     
     
-      _setEventListeners(form) {
-        form.addEventListener('input', (evt) => {
+      _setEventListeners() {
+        this._form.addEventListener('input', (evt) => {
         const input = evt.target;
         this._setCustomError(input);
         this._setFieldError(input);
-        this._setSubmitButtonState(form);
+        this._setSubmitButtonState(this._form);
       });
      }
     
@@ -64,17 +65,9 @@ export class FormValidator {
             });
     
     
-          this._setEventListeners(form);
+          this._setEventListeners();
       });
     }
 }
-export const validationConfig = new FormValidator({
-    button: '.popup__save',
-    form : '.form',
-    inputSelector: '.form__input',
-    buttonInvalid: 'popup__save_invalid',
-    inputInvalid: 'form__input_invalid'
-}  );
 
 
-validationConfig.enableValidation();

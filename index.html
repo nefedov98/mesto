@@ -34,7 +34,7 @@
         <div class="popup popup_edit">
             <div class="popup__container">
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <form class="form form_edit" name="form-name" novalidate>
+                <form class="form form_edit" name="form-name" id ="editForm" novalidate>
                     <fieldset class="form__container">
                         <input id="name-input" type="text" class="form__input form__input_name " placeholder="Ваше имя" name="name" value="" minlength="2" maxlength="40" required="">
                         <span class="form__input-error"></span>
@@ -49,7 +49,7 @@
         <div class="popup popup_image">
             <div class="popup__container">
                 <h2 class="popup__title">Новое место</h2>
-                <form class="form form_add" name="form-place" novalidate>
+                <form class="form form_add" name="form-place" id ="addForm"  novalidate>
                     <fieldset class="form__container">
                         <input type="text" class="form__input form__input_title" placeholder="Название" name="name-place" value="" minlength="2" maxlength="30" required="">
                         <span class="form__input-error"></span>
