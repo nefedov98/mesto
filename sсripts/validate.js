@@ -14,7 +14,7 @@ export class FormValidator {
         span.textContent = field.validationMessage;
     }
     
-    _setSubmitButtonState() {
+    setSubmitButtonState() {
         const isValid = this._form.checkValidity();                       
         console.log(isValid)
         if (isValid) {
@@ -52,7 +52,7 @@ export class FormValidator {
         const input = evt.target;
         this._setCustomError(input);
         this._setFieldError(input);
-        this._setSubmitButtonState(this._form);
+        this.setSubmitButtonState(this._form);
       });
      }
     

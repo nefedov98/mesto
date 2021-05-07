@@ -7,16 +7,20 @@ export class Card {
     }  
 
     _getTemplate() {
-        const cardElement = document.querySelector(this._cardSelector).content.querySelector(".photos__card").cloneNode(true);
+        const placeElement = document
+            .querySelector(this._cardSelector)
+            .content
+            .querySelector('.photos__card')
+            .cloneNode(true);
 
-        return cardElement;
+        return placeElement;
     }
 
     _setEventListeners() {
-        this._element.querySelector('.photos__delete').addEventListener('click', () => {
+        this._deleteButton.addEventListener('click', () => {
             this._deleteCard();
         });
-        this._element.querySelector('.photos__like-button').addEventListener('click', () => {
+        this._likeButton.addEventListener('click', () => {
             this._toggleLike();
         });
         this._element.querySelector('.photos__image').addEventListener('click', () => {

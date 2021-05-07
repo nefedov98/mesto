@@ -75,6 +75,7 @@ function handleCreate(evt) {
     
     formElementAdd.reset()
     buttonSaveImage.setAttribute('disabled', true);
+    addFormValidation.setSubmitButtonState();
     closePopup(popupAddImage);
 }
 
@@ -126,28 +127,20 @@ function  openPicture (name, link) {
 }  
 
 
-
 const editForm = document.forms.editForm;
 const addForm = document.forms.addForm;
 
-const addFormValidation =  new FormValidator({
+const validationConfig = {
     button: '.popup__save',
     form : '.form',
     inputSelector: '.form__input',
     buttonInvalid: 'popup__save_invalid',
     inputInvalid: 'form__input_invalid'
-}, addForm).enableValidation();
-
-const editFormValidation =  new FormValidator({
-    button: '.popup__save',
-    form : '.form',
-    inputSelector: '.form__input',
-    buttonInvalid: 'popup__save_invalid',
-    inputInvalid: 'form__input_invalid'
-}, editForm).enableValidation();
+}
 
 
-/* Ну?))) что скажите, уважаемый ревью? Я все сделал сам, правда. Даже не спрашивал никого!
-Хотя это было очень больно в некоторых моментах... Ваши подсказки очень помогли, спасибо, правда!
-Надеюсь в этот раз ошибок будет немного.. Карточки создаются через класс, с валидацие вроде все ок. Да помогут мне боги.
-Спасибо за вашу работу)*/
+const addFormValidation =  new FormValidator( validationConfig,  addForm);
+addFormValidation.enableValidation();
+
+const editFormValidation =  new FormValidator( validationConfig,  editForm);
+editFormValidation.enableValidation();
