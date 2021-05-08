@@ -58,16 +58,13 @@ export class FormValidator {
     
     
       enableValidation() {
-        const formList = Array.from(document.querySelectorAll(this._config.form));
-        formList.forEach((form) => {
-            form.addEventListener('submit', (evt) => {
-              evt.preventDefault();
-            });
-    
+        this._form.addEventListener('submit', (evt) => {
+            evt.preventDefault();
+        });
     
           this._setEventListeners();
-      });
-    }
+      };
 }
+
 
 

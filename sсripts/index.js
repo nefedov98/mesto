@@ -73,8 +73,7 @@ function handleCreate(evt) {
     const card = new Card(item, '.item-template', openPicture)
     photos.prepend(card.generateCard())
     
-    formElementAdd.reset()
-    buttonSaveImage.setAttribute('disabled', true);
+    formElementAdd.reset();
     addFormValidation.setSubmitButtonState();
     closePopup(popupAddImage);
 }
