@@ -4,16 +4,16 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Место</title>
-        <link rel="stylesheet" href="./pages/index.css">
+        <script defer type = "module" src="./sсripts/index.js"></script>
     </head>
     <body class="page">
         <header class="header">
-            <a href="#" target="_self"><img src="./images/logo.svg" class="logo" alt="логотип"></a>
+            <a href="#" target="_self"><img src="<%=require('./images/logo.svg')%>" class="logo" alt="логотип"></a>
         </header>
         <main class="content">
             <section class="profile">
                 <div class="profile__info">
-                    <img src="./images/image.jpg" class="profile__avatar" alt="Аватар пользователя">
+                    <img src="<%=require('./images/image.jpg')%>" class="profile__avatar" alt="Аватар пользователя">
                     <div class="profile__bio">
                         <div class="profile__text">
                             <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -78,6 +78,5 @@
             <button class="photos__delete" type="button" aria-label="удалить"></button>
             </li>
         </template>
-    <script type = "module" src="./sсripts/index.js"></script>
     </body>
 </html>

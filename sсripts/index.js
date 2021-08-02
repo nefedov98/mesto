@@ -1,6 +1,13 @@
+import '../pages/index.css';
+
 import { initialCards } from './initial-сards.js';
 import { Card } from './card.js';
 import { FormValidator } from './validate.js';
+
+import Popup from './popup.js';
+import Section from './section.js';
+import PopupWithImage from './PopupWithImage.js';
+import PopupWithForm from './PopupWithForm.js';
 
 const openButton = document.querySelector('.profile__edit');
 const popupEdit = document.querySelector('.popup_edit');
@@ -21,48 +28,44 @@ const photos = document.querySelector('.photos__list')
 const itemTemplate = document.querySelector('.item-template').content;
 const formElementAdd = document.querySelector(".form_add");
 const buttonSaveImage = document.querySelector('.popup__save_image');
-function openPopup (popup) {
-    popup.classList.add ('popup_active');
-    document.addEventListener('keydown', keyHandler);
-}
 
-function closePopup (popup) {
-    popup.classList.remove ('popup_active');
-    document.removeEventListener('keydown', keyHandler);
-}
+const popupFull = document.querySelector('.popup_full');
+
+const closeButtonFull = document.querySelector('.popup__close_full');
 
 function handleEditProfileClick () {
     nameInput.value = profileNameElement.textContent;
     jobInput.value = job.textContent;
-    openPopup(popupEdit);
+    popupEditA.open();
 }
 
 function handleProfileSubmit  (evt) {
     evt.preventDefault();
     profileNameElement.textContent = nameInput.value;
     job.textContent = jobInput.value;
-    console.log('sssss')
-    closePopup(popupEdit);
+    popupEditA.close();
 }
 
 popupEdit.addEventListener('click', (event) => {
     if (event.target === event.currentTarget) {
-        closePopup(popupEdit);
+        popupEditA.close();
     }
 })
 
 popupAddImage.addEventListener('click', (event) => {
     if (event.target === event.currentTarget) {
-        closePopup(popupAddImage);
+        popupAdd.close();
+    }
+})
+
+popupFull.addEventListener('click', (event) => {
+    if (event.target === event.currentTarget) {
+        fullImage.close();
     }
 })
 
 const srcImage = document.querySelector(".popup__full-image");
 const nameImage = document.querySelector(".popup__full-caption");
-
-function addCard (card) {
-    photos.prepend(card);
-}
 
 function handleCreate(evt) {
     evt.preventDefault();
@@ -75,54 +78,24 @@ function handleCreate(evt) {
     
     formElementAdd.reset();
     addFormValidation.setSubmitButtonState();
-    closePopup(popupAddImage);
+    popupAdd.close();
 }
 
-const popupFull = document.querySelector('.popup_full');
 
-const closeButtonFull = document.querySelector('.popup__close_full');
-
-popupFull.addEventListener('click', (event) => {
-    if (event.target === event.currentTarget) {
-        closePopup(popupFull);
-    }
-})
-
-function keyHandler (evt) {
-    if (evt.key === "Escape"){
-        const openedPopup = document.querySelector('.popup_active');
-        openedPopup.classList.remove('popup_active')
-    }
-}
 
 openButton.addEventListener('click', handleEditProfileClick);
-closeButtonEdit.addEventListener('click', () => {
-    closePopup(popupEdit);
-})
+
 formElementEdit.addEventListener('submit', handleProfileSubmit );
 
-buttonAddImage.addEventListener('click', () => {
-    openPopup(popupAddImage);
-})
-buttonCloseImage.addEventListener('click', () => {
-    closePopup(popupAddImage);
-})
 formElementAdd.addEventListener('submit', handleCreate);
 
-closeButtonFull.addEventListener('click', () => {
-    closePopup(popupFull);
-})
 
-initialCards.forEach((item)=>{
-    const card = new Card(item, '.item-template', openPicture)
-    photos.prepend(card.generateCard())
- }) 
 
-function  openPicture (name, link) { 
+function openPicture (name, link) { 
     nameImage.textContent = name;
     srcImage.src = link;
     srcImage.alt = name;
-    openPopup(popupFull);
+    fullImage.open()
 }  
 
 
@@ -143,3 +116,57 @@ addFormValidation.enableValidation();
 
 const editFormValidation =  new FormValidator( validationConfig,  editForm);
 editFormValidation.enableValidation();
+
+
+const cardList = new Section({
+	data: initialCards, 
+	renderer: (item)=> {
+		const card = new Card(item,'.item-template');
+        photos.prepend(card.generateCard())
+	}
+ }, 
+ );
+
+const popupAdd = new Popup(popupAddImage);
+const popupEditA = new Popup(popupEdit);
+
+
+cardList.rendererItem();
+
+
+
+buttonAddImage.addEventListener('click', () => {
+    popupAdd.open();
+  });
+
+buttonCloseImage.addEventListener('click', () => {
+    popupAdd.close();
+  });
+
+openButton.addEventListener('click', () => {
+    popupEditA.open();
+  });
+
+closeButtonEdit.addEventListener('click', () => {
+    popupEditA.close();
+  });
+ 
+closeButtonFull.addEventListener('click', () => {
+    fullImage.close();
+})
+
+
+// пока что фул пупап открывается только на вновь созданных карточках, бесполезные классы юзер, попап с
+
+const fullImage = new PopupWithImage(popupFull);
+
+const popupA = new PopupWithForm(popupAddImage)
+
+buttonAddImage.addEventListener('click', () => {
+    popupA.open();
+  });
+
+
+const popupE = new PopupWithForm(popupEdit, handleProfileSubmit)
+
+

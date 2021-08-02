@@ -1,5 +1,5 @@
 export class Card {
-    constructor(data, cardSelector, handleOpenPopup) { //передаем при создании экземляра
+    constructor(data, cardSelector, handleOpenPopup) { 
         this._text = data.name;
         this._image = data.link;
         this._cardSelector = cardSelector;
