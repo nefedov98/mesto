@@ -36,19 +36,19 @@ const closeButtonFull = document.querySelector('.popup__close_full');
 function handleEditProfileClick () {
     nameInput.value = profileNameElement.textContent;
     jobInput.value = job.textContent;
-    popupEditA.open();
+    popupE.open();
 }
 
 function handleProfileSubmit  (evt) {
     evt.preventDefault();
     profileNameElement.textContent = nameInput.value;
     job.textContent = jobInput.value;
-    popupEditA.close();
+    popupE.close();
 }
 
 popupEdit.addEventListener('click', (event) => {
     if (event.target === event.currentTarget) {
-        popupEditA.close();
+        popupE.close();
     }
 })
 
@@ -127,46 +127,54 @@ const cardList = new Section({
  }, 
  );
 
-const popupAdd = new Popup(popupAddImage);
-const popupEditA = new Popup(popupEdit);
+ cardList.rendererItem();
+
+// const popupAdd = new Popup(popupAddImage);
+// const popupEditA = new Popup(popupEdit);
 
 
-cardList.rendererItem();
 
 
 
-buttonAddImage.addEventListener('click', () => {
-    popupAdd.open();
-  });
 
-buttonCloseImage.addEventListener('click', () => {
-    popupAdd.close();
-  });
+// buttonAddImage.addEventListener('click', () => {
+//     popupAdd.open();
+//   });
 
-openButton.addEventListener('click', () => {
-    popupEditA.open();
-  });
+// buttonCloseImage.addEventListener('click', () => {
+//     popupAdd.close();
+//   });
 
-closeButtonEdit.addEventListener('click', () => {
-    popupEditA.close();
-  });
+// openButton.addEventListener('click', () => {
+//     popupEditA.open();
+//   });
+
+// closeButtonEdit.addEventListener('click', () => {
+//     popupEditA.close();
+//   });
  
-closeButtonFull.addEventListener('click', () => {
-    fullImage.close();
-})
+// closeButtonFull.addEventListener('click', () => {
+//     fullImage.close();
+// })
 
 
 // пока что фул пупап открывается только на вновь созданных карточках, бесполезные классы юзер, попап с
 
-const fullImage = new PopupWithImage(popupFull);
+// const fullImage = new PopupWithImage(popupFull);
 
-const popupA = new PopupWithForm(popupAddImage)
+const popupA = new PopupWithForm(popupAddImage, handleCreate)
 
 buttonAddImage.addEventListener('click', () => {
+    console.log('sss')
     popupA.open();
+
   });
 
 
 const popupE = new PopupWithForm(popupEdit, handleProfileSubmit)
 
+openButton.addEventListener('click', () => {
+    console.log('aaaa')
+    popupE.open();
 
+  });
