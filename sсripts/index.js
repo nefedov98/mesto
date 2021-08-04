@@ -36,25 +36,25 @@ const closeButtonFull = document.querySelector('.popup__close_full');
 function handleEditProfileClick () {
     nameInput.value = profileNameElement.textContent;
     jobInput.value = job.textContent;
-    popupE.open();
+    popupEditForm.open();
 }
 
 function handleProfileSubmit  (evt) {
     evt.preventDefault();
     profileNameElement.textContent = nameInput.value;
     job.textContent = jobInput.value;
-    popupE.close();
+    popupEditForm.close();
 }
 
 popupEdit.addEventListener('click', (event) => {
     if (event.target === event.currentTarget) {
-        popupE.close();
+        popupEditForm.close();
     }
 })
 
 popupAddImage.addEventListener('click', (event) => {
     if (event.target === event.currentTarget) {
-        popupAdd.close();
+        popupAddForm.close();
     }
 })
 
@@ -64,8 +64,8 @@ popupFull.addEventListener('click', (event) => {
     }
 })
 
-const srcImage = document.querySelector(".popup__full-image");
-const nameImage = document.querySelector(".popup__full-caption");
+// const srcImage = document.querySelector(".popup__full-image");
+// const nameImage = document.querySelector(".popup__full-caption");
 
 function handleCreate(evt) {
     evt.preventDefault();
@@ -73,12 +73,12 @@ function handleCreate(evt) {
         name: titleInput.value,
         link: linkInput.value
     }
-    const card = new Card(item, '.item-template', openPicture)
+    const card = new Card(item, '.item-template', handleCardClick)
     photos.prepend(card.generateCard())
     
     formElementAdd.reset();
     addFormValidation.setSubmitButtonState();
-    popupAdd.close();
+    popupAddForm.close();
 }
 
 
@@ -91,13 +91,9 @@ formElementAdd.addEventListener('submit', handleCreate);
 
 
 
-function openPicture (name, link) { 
-    nameImage.textContent = name;
-    srcImage.src = link;
-    srcImage.alt = name;
-    fullImage.open()
+function handleCardClick (name, link) { 
+    fullImage.open(name, link)
 }  
-
 
 const editForm = document.forms.editForm;
 const addForm = document.forms.addForm;
@@ -129,52 +125,40 @@ const cardList = new Section({
 
  cardList.rendererItem();
 
-// const popupAdd = new Popup(popupAddImage);
-// const popupEditA = new Popup(popupEdit);
 
 
 
 
-
-
-// buttonAddImage.addEventListener('click', () => {
-//     popupAdd.open();
-//   });
-
-// buttonCloseImage.addEventListener('click', () => {
-//     popupAdd.close();
-//   });
-
-// openButton.addEventListener('click', () => {
-//     popupEditA.open();
-//   });
-
-// closeButtonEdit.addEventListener('click', () => {
-//     popupEditA.close();
-//   });
- 
-// closeButtonFull.addEventListener('click', () => {
-//     fullImage.close();
-// })
-
-
-// пока что фул пупап открывается только на вновь созданных карточках, бесполезные классы юзер, попап с
-
-// const fullImage = new PopupWithImage(popupFull);
-
-const popupA = new PopupWithForm(popupAddImage, handleCreate)
+const popupAddForm = new PopupWithForm(popupAddImage)
+const popupEditForm = new PopupWithForm(popupEdit, handleProfileSubmit)
+const fullImage = new PopupWithImage(popupFull);
 
 buttonAddImage.addEventListener('click', () => {
-    console.log('sss')
-    popupA.open();
-
+    popupAddForm.open();
   });
 
-
-const popupE = new PopupWithForm(popupEdit, handleProfileSubmit)
+buttonCloseImage.addEventListener('click', () => {
+    popupAddForm.close();
+});
 
 openButton.addEventListener('click', () => {
-    console.log('aaaa')
-    popupE.open();
-
+    popupEditForm.open();
   });
+
+closeButtonEdit.addEventListener('click', () => {
+    popupEditForm.close();
+});
+
+
+
+closeButtonFull.addEventListener('click', () => {
+    fullImage.close();
+})
+
+// const qqqqqq = document.querySelector('.photos__image')
+
+
+// qqqqqq.addEventListener('click', () => {
+//     console.log('eeeeeeeee')
+//     fullImage.open()
+// })
