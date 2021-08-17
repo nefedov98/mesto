@@ -24,7 +24,7 @@ export class Card {
             this._toggleLike();
         });
         this._element.querySelector('.photos__image').addEventListener('click', () => {
-            this._handleOpenPopup(this._text, this._image) //передаем данные
+            this._handleOpenPopup(this._text, this._image) //передаем данные (вот тут not func)
         }); 
     }
 

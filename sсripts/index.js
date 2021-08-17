@@ -8,6 +8,7 @@ import Popup from './popup.js';
 import Section from './section.js';
 import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
+import UserInfo from './UserInfo.js';
 
 const openButton = document.querySelector('.profile__edit');
 const popupEdit = document.querySelector('.popup_edit');
@@ -33,17 +34,16 @@ const popupFull = document.querySelector('.popup_full');
 
 const closeButtonFull = document.querySelector('.popup__close_full');
 
-function handleEditProfileClick () {
-    nameInput.value = profileNameElement.textContent;
-    jobInput.value = job.textContent;
-    popupEditForm.open();
-}
-
 function handleProfileSubmit  (evt) {
-    evt.preventDefault();
-    profileNameElement.textContent = nameInput.value;
-    job.textContent = jobInput.value;
+    // evt.preventDefault();
+    // profileNameElement.textContent = nameInput.value;
+    // job.textContent = jobInput.value;
+    profileUserInfo.setUserInfo({
+        name: nameInput.value,
+        job: jobInput.value
+      });
     popupEditForm.close();
+
 }
 
 popupEdit.addEventListener('click', (event) => {
@@ -64,9 +64,6 @@ popupFull.addEventListener('click', (event) => {
     }
 })
 
-// const srcImage = document.querySelector(".popup__full-image");
-// const nameImage = document.querySelector(".popup__full-caption");
-
 function handleCreate(evt) {
     evt.preventDefault();
     const item = {
@@ -82,18 +79,18 @@ function handleCreate(evt) {
 }
 
 
-
-openButton.addEventListener('click', handleEditProfileClick);
+openButton.addEventListener('click', () => {
+    const currentUserInfo = profileUserInfo.getUserInfo();
+    nameInput.value = currentUserInfo.name;
+    jobInput.value = currentUserInfo.job;
+    popupEditForm.open();
+});
 
 formElementEdit.addEventListener('submit', handleProfileSubmit );
 
 formElementAdd.addEventListener('submit', handleCreate);
 
-
-
-function handleCardClick (name, link) { 
-    fullImage.open(name, link)
-}  
+const handleCardClick = (name, link) => fullImage.open(name, link)
 
 const editForm = document.forms.editForm;
 const addForm = document.forms.addForm;
@@ -117,7 +114,7 @@ editFormValidation.enableValidation();
 const cardList = new Section({
 	data: initialCards, 
 	renderer: (item)=> {
-		const card = new Card(item,'.item-template');
+		const card = new Card(item,'.item-template', handleCardClick);
         photos.prepend(card.generateCard())
 	}
  }, 
@@ -126,12 +123,12 @@ const cardList = new Section({
  cardList.rendererItem();
 
 
-
-
-
-const popupAddForm = new PopupWithForm(popupAddImage)
+const popupAddForm = new PopupWithForm(popupAddImage, handleProfileSubmit)
 const popupEditForm = new PopupWithForm(popupEdit, handleProfileSubmit)
+const profileUserInfo = new UserInfo({nameSelector: profileNameElement, jobSelector: job});
 const fullImage = new PopupWithImage(popupFull);
+
+
 
 buttonAddImage.addEventListener('click', () => {
     popupAddForm.open();
@@ -149,16 +146,7 @@ closeButtonEdit.addEventListener('click', () => {
     popupEditForm.close();
 });
 
-
-
 closeButtonFull.addEventListener('click', () => {
     fullImage.close();
 })
 
-// const qqqqqq = document.querySelector('.photos__image')
-
-
-// qqqqqq.addEventListener('click', () => {
-//     console.log('eeeeeeeee')
-//     fullImage.open()
-// })

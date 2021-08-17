@@ -18,7 +18,8 @@ export default class Popup {
             this._handleEscClose(evt)
         })
         this._popupSelector.addEventListener('click', (evt) => {
-            this._handleCloseByOverlay(evt)
+            if (evt.target === evt.currentTarget)
+            this.close()
         })
     }
 
