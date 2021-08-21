@@ -35,9 +35,9 @@
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <form class="form form_edit" name="form-name" id ="editForm" novalidate>
                     <fieldset class="form__container">
-                        <input id="name-input" type="text" class="form__input form__input_name " placeholder="Ваше имя" name="name" value="" minlength="2" maxlength="40" required="">
+                        <input type="text" class="form__input form__input_name " placeholder="Ваше имя" name="name" id ='name' value="" minlength="2" maxlength="40" required="">
                         <span class="form__input-error"></span>
-                        <input id="job-input" type="text" class="form__input form__input_job " placeholder="Краткое описание" name="job" value="" minlength="2" maxlength="200" required="">
+                        <input type="text" class="form__input form__input_job " placeholder="Краткое описание" name="job" id ='job' value="" minlength="2" maxlength="200" required="">
                         <span class="form__input-error"></span>
                         <button disabled type="submit" class="popup__save popup__save_edit popup__save_invalid" aria-label="сохранить">Сохранить</button>
                     </fieldset>
@@ -50,9 +50,9 @@
                 <h2 class="popup__title">Новое место</h2>
                 <form class="form form_add" name="form-place" id ="addForm"  novalidate>
                     <fieldset class="form__container">
-                        <input type="text" class="form__input form__input_title" placeholder="Название" name="name-place" value="" minlength="2" maxlength="30" required="">
+                        <input type="text" class="form__input form__input_title" placeholder="Название" name="name-place" id ='name' value="" minlength="2" maxlength="30" required="">
                         <span class="form__input-error"></span>
-                        <input type="url" class="form__input form__input_link" placeholder="Ссылка на картинку" name="image-place" value="" required="">
+                        <input type="url" class="form__input form__input_link" placeholder="Ссылка на картинку" name="image-place" id ='link' value="" required="">
                         <span class="form__input-error"></span>
                         <button disabled type="submit" class="popup__save popup__save_image popup__save_invalid" aria-label="сохранить">Создать</button>
                     </fieldset>

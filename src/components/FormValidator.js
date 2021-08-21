@@ -52,7 +52,7 @@ export class FormValidator {
         const input = evt.target;
         this._setCustomError(input);
         this._setFieldError(input);
-        this.setSubmitButtonState(this._form);
+        this.setSubmitButtonState();
       });
      }
     

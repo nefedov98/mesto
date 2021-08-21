@@ -23,13 +23,13 @@ export class Card {
         this._likeButton.addEventListener('click', () => {
             this._toggleLike();
         });
-        this._element.querySelector('.photos__image').addEventListener('click', () => {
+        this._imageElement.addEventListener('click', () => {
             this._handleOpenPopup(this._text, this._image) //передаем данные (вот тут not func)
         }); 
     }
 
     _toggleLike() {
-        this._element.querySelector('.photos__like-button').classList.toggle('photos__like-button_liked');
+        this._likeButton.classList.toggle('photos__like-button_liked');
     }
 
     _deleteCard() {
@@ -43,8 +43,7 @@ export class Card {
         this._titleElement.textContent = this._text;
         this._imageElement = this._element.querySelector(".photos__image");
         this._imageElement.src = this._image;
-        this._altElement = this._element.querySelector(".photos__image");
-        this._altElement.alt = this._image;
+        this._imageElement.alt = this._image;
 
         this._likeButton = this._element.querySelector(".photos__like-button");
         this._deleteButton = this._element.querySelector(".photos__delete");
