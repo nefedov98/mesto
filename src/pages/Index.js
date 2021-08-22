@@ -1,3 +1,7 @@
+// Здравствуйте! Прошу прощения, честно говоря не понял, вы имели в виду какие-то еще замечания кроме как те 
+// что вы отметили после второй проверки? Просто мне не удалось найти какое оранжевое замечания 
+// я еще упустил( если я правильно понял). Спасибо за вашу работу, буду благодарен если уточните где еще у меня проблемы.
+
 import './index.css';
 
 import { initialCards } from '../utils/Initial-сards';
@@ -53,7 +57,7 @@ photos);
 
 cardList.rendererItem();
 
-const popupAddForm = new PopupWithForm({popupSelector: popupAddImage, handleFormSubmit: (item) => {
+const popupAddForm = new PopupWithForm({popupSelector: '.popup_image', handleFormSubmit: (item) => {
     const cardElement = createCard(item)
     cardList.prependItem(cardElement); 
     console.log(item)
@@ -68,7 +72,7 @@ buttonAddImage.addEventListener('click', () => {
 popupAddForm.setEventListeners()
 
 
-const popupEditForm = new PopupWithForm({popupSelector: popupEdit, handleFormSubmit: (item) => {
+const popupEditForm = new PopupWithForm({popupSelector: '.popup_edit', handleFormSubmit: (item) => {
     profileUserInfo.setUserInfo({
         name: item.name,
         job: item.job
@@ -89,7 +93,7 @@ popupEditForm.setEventListeners()
 
 const profileUserInfo = new UserInfo({name: profileNameElement, job: job});
 
-const fullImage = new PopupWithImage({popupSelector: popupFull});
+const fullImage = new PopupWithImage({popupSelector: '.popup_full'});
 fullImage.setEventListeners()
 
 
