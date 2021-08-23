@@ -1,7 +1,4 @@
 
-
-
-
 export class FormValidator {
     constructor(config, form) {
         this._config = config;
@@ -38,6 +35,11 @@ export class FormValidator {
         }
         else if (validity.typeMismatch && input.type === 'url') {
             input.setCustomValidity('Здесь должна быть ссылка');
+            input.classList.add(this._config.inputInvalid);
+        }
+        else if (input.validity === '') {
+            console.log('sasa')
+            input.setCustomValidity('EWEWEW');
             input.classList.add(this._config.inputInvalid);
         }
         else {
