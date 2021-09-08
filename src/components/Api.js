@@ -80,11 +80,12 @@ dislike(id) {
 
 handleUserAvatar(data) {
   console.log(data)
+  
   return fetch(`${this.url}/avatar`, {
     method: 'PATCH',
     headers: this.headers,
     body: JSON.stringify({
-      avatar: data.link,
+      avatar: data.linkAvatar,
     })
   })
   .then(this._checkResponse)
