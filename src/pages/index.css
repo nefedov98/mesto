@@ -46,4 +46,11 @@
 
 @import url(../blocks/popup/__save/_invalid/popup__save_invalid.css);
 
-@import url(../blocks/form/__input/_invalid/form__input_invalid.css);
+@import url(../blocks/photos/__likes/photos__likes.css);
+
+@import url(../blocks/popup/__title/_delete/popup__title_delete.css);
+
+@import url(../blocks/popup/__close/_delete/popup__close_delete.css);
+
+@import url(../blocks/photos/__delete/_hidden/photos__delete_hidden.css);
+@import url(../blocks/photos/__delete/_visible/photos__delete_visible.css);
