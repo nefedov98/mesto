@@ -51,6 +51,9 @@ export class Card {
         this._deleteButton = this._element.querySelector(".photos__delete");
         this._deleteButton.classList.add(this._userId === this._ownerId ? 'photos__delete_visible' : 'photos__delete_hidden');
         this._element.querySelector('.photos__likes').textContent = this._likes.length;
+        if(this._likes.find((obj) => this._userId === obj._id)) {
+          this._element.querySelector('.photos__like-button').classList.add('photos__like-button_liked')
+        }
         this._setEventListeners();
         return this._element;
     }

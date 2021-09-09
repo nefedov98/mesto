@@ -15,6 +15,8 @@ import UserInfo from '../components/UserInfo.js';
 
 import Api from '../components/Api.js';
 
+import PopupWithFormSubmit from '../components/PopupWithFormSubmit.js';
+
 
 
 
@@ -45,17 +47,18 @@ editFormValidation.enableValidation();
 
 const createCard = (cardData) => {
     const card = new Card({data : {...cardData, currentUserId: userId }},'.item-template', handleCardClick, {handleDelete: () => {
-        popupSaveDelete.addEventListener('click', () => {
-          popupDelete.renderLoading(true);
+      popupDelete.setSubmitAction( _ => {
+          popupDelete.renderLoadingWhileDeleting(true);
           api.deleteCard(cardData._id)
-          .then(() => {
+          .then( _ => {
           card.deleteCard();
           popupDelete.close();
           })
           .catch(err => console.log(`При удалении карточки: ${err}`))
-          .finally(() => popupDelete.renderLoading(false));
+          .finally(() => popupDelete.renderLoadingWhileDeleting(false));
         });
       popupDelete.open()
+      console.log(card)
     }},
     {handleLikeClick: _ => card.handleLikeCard()},api
   );
@@ -63,7 +66,6 @@ const createCard = (cardData) => {
     const cardElement = card.generateCard()
     return cardElement;
 }
-
 const popupAddForm = new PopupWithForm('.popup_image', {handleFormSubmit: (data) => {
   popupAddForm.renderLoading(true);
     api.creatNewCard(data)
@@ -85,7 +87,7 @@ popupAddForm.setEventListeners()
 
 const popupEditForm = new PopupWithForm('.popup_edit', {handleFormSubmit: (data) => {
   popupEditForm.renderLoading(true);
-    apiUser
+    api
     .setUserInfoApi({
         name: data.name,
         about: data.job
@@ -126,14 +128,10 @@ const cardList = new Section({
 photos, api);
 
 const api = new Api ({
-    Url: 'https://mesto.nomoreparties.co/v1/cohort-27/cards'
+    Url: 'https://mesto.nomoreparties.co/v1/cohort-27'
   });
  
-const apiUser = new Api ({
-    Url: 'https://mesto.nomoreparties.co/v1/cohort-27/users/me'
-});
-
-Promise.all([api.getInitialCards(), apiUser.getUserInfoApi()])
+Promise.all([api.getInitialCards(), api.getUserInfoApi()])
   .then(([cards, userData]) => {
     userId = userData._id;
 
@@ -148,15 +146,13 @@ Promise.all([api.getInitialCards(), apiUser.getUserInfoApi()])
   .catch(err => console.log(`Ошибка загрузки данных: ${err}`))
 
 const popupSaveDelete = document.querySelector('.popup__save_delete');
-const popupDelete = new PopupWithForm('.popup_delete', {handleFormSubmit: () =>{}});
+const popupDelete = new PopupWithFormSubmit({popupSelector: '.popup_delete'});
+popupDelete.setEventListeners();
 
-popupDelete.setEventListeners()
-
-
-const openAvatar= document.querySelector('.profile__avatar');
+const openAvatar= document.querySelector('.profile__avatar-edit-button');
 const popupAvatar = new PopupWithForm('.popup_avatar', { handleFormSubmit: (newValues) => {
   popupAvatar.renderLoading(true);
-  apiUser.handleUserAvatar(newValues)
+  api.handleUserAvatar(newValues)
     .then((data) => {
       console.log(data)
       profileUserInfo.setUserAvatar(data)
